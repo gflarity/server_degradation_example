@@ -1,0 +1,8 @@
+Developed against node v0.4.10 on OS X.
+
+1) In one terminal run 'node catcher.js | tee results.out', in another run 'node pitcher.js'. 
+2) Open 'top' in a nother window and checkout the node processes cpu usage.
+2) Control C whenver you notice the latency hockey stick. 
+3) run 'python -m SimpleHTTPServer'
+4) Open http://localhost:8000/results.html
+

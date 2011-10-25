@@ -1,0 +1,38 @@
+<html>
+<head>
+<script language="javascript" type="text/javascript" src="dist/jquery.min.js"></script>
+ <script language="javascript" type="text/javascript" src="dist/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="dist/plugins/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="dist/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function(){
+        
+        
+       var onGetComplete = function onGetComplete(responseText)  {
+           console.log( responseText );
+           
+           var lines = responseText.split('\n');        
+            var points = [];
+            
+            for ( var i = 0; i < lines.length; i++ ) {
+                var line = lines[i];
+                console.log(line);
+                var regex = /busy loop size\: (\d+), Latest average latency: (\d+)/;
+                var match = regex.exec(line);
+                if ( match && match.length > 2 ) {
+                    points.push( parseInt(match[2]) );
+                }
+            }
+            var plot1 = $.jqplot('chart1', [points]);
+
+       };
+        
+        $.get( 'results.out', onGetComplete ) 
+    });
+</script>
+</head>
+<body>
+<div id="chart1" style="height:300px; width:500px;"></div>
+</body>
+
+</html>
